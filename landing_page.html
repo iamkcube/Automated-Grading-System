@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- ADD A LOGO -->
+    <link rel="icon" type="image/svg" href="https://outr.ac.in/public/uploads/logo_4.png" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grading Portal</title>
+
+    <!-- ADDING SYLES -->
+    <style>
+        body{
+            margin: 0;
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .login_page{
+            background-image: url(images/MAIN_GATE.jpg);
+            background-position: center center;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login_page_content{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .headings{
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .login_form{
+            width: 70%;
+            color: black;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            margin: 20px;
+        }
+
+        .login_form h5{
+            color: #666666;
+            font-weight: bold;
+            text-transform: capitalize;
+        }
+
+        .login_form form{
+            width: 90%;
+        }
+
+        .labels{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px;
+        }
+
+        .labels input{
+            width: 100%;
+            height: 30px;
+            padding: 5px;
+        }
+
+        .labels:nth-child(3){
+            justify-content: end;
+        }
+
+        .login_form button{
+            background-color: #367fa9;
+            padding: 10px;
+            border: none;
+            color: white;
+        }
+
+        .login_form button:hover{
+            box-shadow: inset 0 0 20px 3px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+        }
+
+        @media(max-width : 300px){
+              .headings{
+                font-size: 20px;
+              }         
+        }
+
+    </style>
+</head>
+<body>
+    <div class="login_page">
+        <div class="login_page_content">
+            <div class="headings">
+                <div class="heading">
+                    ONLINE GRADING PORTAL
+                </div>
+                <div class="heading">
+                    ODISHA UNIVERSITY OF TECHNOLOGY AND RESEARCH
+                </div>
+            </div>
+            <div class="login_form">
+                <h5 class="heading">ADMIN/TEACHER LOGIN</h2>
+                <form action="">
+                    <div class="labels">
+                        <input type="text" name="username" placeholder="Username"></div>
+                    <div class="labels">
+                        <input type="password" name="password" placeholder="Password"></div>
+                    <div class="labels"><button type="submit">Login</button></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

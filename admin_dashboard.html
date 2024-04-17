@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, 
+				initial-scale=1.0"
+    />
+    <title>Dashboard</title>
+    <link
+      rel="icon"
+      type="image/svg"
+      href="https://outr.ac.in/public/uploads/logo_4.png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.1.0/remixicon.min.css"
+    />
+    <style>
+      /* Main CSS Here */
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      :root {
+        --background-color: #ecf0f5;
+        --header-background-color: #3c8dbc;
+        --navbar-background-color: #222d32;
+      }
+      body {
+        background-color: var(--background-color);
+        max-width: 100%;
+        overflow-x: hidden;
+      }
+      header {
+        height: 70px;
+        width: 100vw;
+        padding: 0 30px;
+        background-color: var(--header-background-color);
+        position: fixed;
+        z-index: 100;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 20px;
+        font-weight: 500;
+        color: white;
+      }
+
+      .menu-symbol {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 20px;
+        width: 30px;
+        cursor: pointer;
+      }
+
+      .line {
+        height: 2px;
+        width: 100%;
+        background-color: white;
+      }
+
+      .icn {
+        height: 30px;
+      }
+
+      .searchbar,
+      .message,
+      .logosec {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .message{
+        flex-direction: row-reverse;
+        gap:20px;
+        font-size: 15px;
+        font-weight: 700;
+        color: white;
+      }
+
+      .searchbar2 {
+        display: none;
+      }
+
+      .logosec {
+        gap: 60px;
+      }
+
+      .dp {
+        height: 40px;
+        width: 40px;
+        background-color: #626262;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+      .main-container {
+        display: flex;
+        width: 100vw;
+        position: relative;
+        top: 70px;
+        z-index: 1;
+      }
+      .dpicn {
+        height: 42px;
+      }
+      .main {
+        height: calc(100vh - 70px);
+        width: 100%;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        padding: 40px 30px 30px 30px;
+      }
+      .nav {
+        min-height: 91vh;
+        width: 350px;
+        background-color: var(--navbar-background-color);
+        position: absolute;
+        top: 0px;
+        left: 0;
+        box-shadow: 1px 1px 10px rgba(198, 189, 248, 0.825);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 30px 0 20px 0;
+      }
+      .navcontainer {
+        height: calc(100vh - 70px);
+        width: 350px;
+        position: relative;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        transition: all 0.5s ease-in-out;
+        font-size: 15px;
+      }
+      .navcontainer::-webkit-scrollbar {
+        display: none;
+      }
+      .navclose {
+        width: 60px;
+      }
+      .nav-option {
+        width: 350px;
+        display: flex;
+        align-items: center;
+        padding: 20px 30px 20px 20px;
+        gap: 20px;
+        transition: all 0.1s ease-in-out;
+        color: white;
+      }
+      .nav-option:hover {
+        background-color: #1a2226;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      .nav-img {
+        height: 30px;
+      }
+      .nav-upper-options {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 30px;
+      }
+
+      .main form{
+        background-color: white;
+        padding: 20px;
+        display: flex;
+        gap: 20px;
+        flex-direction: column;
+        border: 1px solid #d2d6de;
+        border-top: 2px solid #d2d6de;
+      }
+
+      .main form label{
+        border-top: 1px solid #d2d6de;
+        border-bottom: 1px solid #d2d6de ;
+        padding: 15px;
+        font-size: 25px;
+      }
+
+      .main form button{
+        background-color: #337ab7;
+        padding: 10px;
+        color: white;
+        border: none;
+        width: 150px;
+      }
+
+      .main form button:hover{
+        background-color: #1d4970;
+        cursor: pointer;
+      }
+
+      .result-container{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        color: #72afd2;
+        border-top: 1px solid #d2d6de;
+        border-bottom: 1px solid #d2d6de ;
+        padding: 20px;
+      }
+
+      .result-container div{
+        padding: 5px;
+        background-color: none;
+      }
+
+      .result-container div:nth-child(odd){
+        background-color: #f9f9f9;
+      }
+
+      .result-container h3{
+        color: black;
+        text-align: center;
+      }
+
+      /* Responsive CSS Here */
+      @media screen and (max-width: 950px) {
+        .nav-img {
+          height: 25px;
+        }
+        .nav-option {
+          gap: 30px;
+        }
+      }
+
+      @media screen and (max-width: 850px) {
+        .nav-option {
+          gap: 30px;
+        }
+        .navcontainer {
+          width: 100vw;
+          position: absolute;
+          transition: all 0.6s ease-in-out;
+          top: 0;
+          left: -100vw;
+        }
+        .nav {
+          width: 100%;
+          position: absolute;
+        }
+        .navclose {
+          left: 00px;
+        }
+        .main {
+          padding: 40px 30px 30px 30px;
+        }
+      }
+
+      @media screen and (max-width: 490px) {
+        .message {
+          display: none;
+        }
+        .logosec {
+          width: 100%;
+          justify-content: space-between;
+        }
+        .logo {
+          font-size: 20px;
+        }
+        .menuicn {
+          height: 25px;
+        }
+        .nav-img {
+          height: 25px;
+        }
+        .nav-option {
+          gap: 25px;
+        }
+        .nav-upper-options {
+          gap: 15px;
+        }
+      }
+
+      @media screen and (max-width: 400px) {
+      }
+
+      @media screen and (max-width: 320px) {
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- for header part -->
+    <header>
+      <div class="logosec">
+        <div class="logo">OUTR(former Cet)</div>
+        <div class="menu-symbol">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+      </div>
+      <div class="message">
+        <div class="login-name"><p>SARANS MISHRA</p></div>
+        <div class="dp">
+          <img
+            src="https://media.geeksforgeeks.org/wp-content/uploads/20221210180014/profile-removebg-preview.png"
+            class="dpicn"
+            alt="dp"
+          />
+        </div>
+      </div>
+    </header>
+
+    <div class="main-container">
+      <div class="navcontainer">
+        <nav class="nav">
+          <div class="nav-upper-options">
+            <div class="nav-option option3">
+              <i class="ri-chat-upload-line" style="font-size: 20px"></i>
+              <p>Upload</p>
+            </div>
+            <div class="nav-option option5">
+              <i class="ri-profile-line" style="font-size: 20px"></i>
+              <p>Student Record</p>
+            </div>
+            <div class="nav-option logout">
+              <i class="ri-logout-circle-line" style="font-size: 20px"></i>
+              <p>Logout</p>
+            </div>
+          </div>
+        </nav>
+      </div>
+      <div class="main">
+        <form id="imageUploadForm" enctype="multipart/form-data">
+          <label for="image">Upload the front page of Answersheet</label>
+          <br>
+          <input
+            type="file"
+            id="imageUploadInput"
+            name="image"
+            accept="image/*"
+          />
+          <button type="submit">Upload Image</button>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      // js for responsive nav
+      let menuicn = document.querySelector(".menu-symbol");
+      let nav = document.querySelector(".navcontainer");
+      menuicn.addEventListener("click", () => {
+        nav.classList.toggle("navclose");
+      });
+      // js for handling formdata
+      document
+        .getElementById("imageUploadForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          const formData = new FormData(this);
+          const newDiv = document.createElement("div");
+          newDiv.classList.add("result-container");
+          const heading = document.createElement("h3");
+          heading.textContent = "Following Information where recorded"
+          const marksDiv = document.createElement("div");
+          marksDiv.textContent = "Marks Scored: 45";
+          const regNumDiv = document.createElement("div");
+          regNumDiv.textContent = "Registration Number: 2111100424";
+          const subjectDiv = document.createElement("div");
+          subjectDiv.textContent = "Subject: Software Engineering";
+          newDiv.appendChild(heading);
+          newDiv.appendChild(marksDiv);
+          newDiv.appendChild(regNumDiv);
+          newDiv.appendChild(subjectDiv);
+          document.querySelector("#imageUploadForm").appendChild(newDiv);
+        });
+    </script>
+  </body>
+</html>
