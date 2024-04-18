@@ -1,0 +1,100 @@
+body
+{
+	margin: 0;
+	color: white;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.login_page
+{
+	background-image: url(images/MAIN_GATE.jpg);
+	background-position: center center;
+	background-size: cover;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.login_page_content
+{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.headings
+{
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	font-size: 30px;
+	font-weight: bold;
+}
+
+.login_form
+{
+	width: 70%;
+	color: black;
+	background-color: white;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 20px;
+	margin: 20px;
+}
+
+.login_form h5
+{
+	color: #666666;
+	font-weight: bold;
+	text-transform: capitalize;
+}
+
+.login_form form
+{
+	width: 90%;
+}
+
+.labels
+{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 10px;
+}
+
+.labels input
+{
+	width: 100%;
+	height: 30px;
+	padding: 5px;
+}
+
+.labels:nth-child(3)
+{
+	justify-content: end;
+}
+
+.login_form button
+{
+	background-color: #367fa9;
+	padding: 10px;
+	border: none;
+	color: white;
+}
+
+.login_form button:hover
+{
+	box-shadow: inset 0 0 20px 3px rgba(0, 0, 0, 0.3);
+	cursor: pointer;
+}
+
+@media(max-width : 300px)
+{
+	.headings
+	{
+		font-size: 20px;
+	}
+}
