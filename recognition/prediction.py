@@ -40,7 +40,7 @@ def segment_digits(image, padding=2):
         x_end = min(x + w + padding, image.shape[1])
         y_end = min(y + h + padding, image.shape[0])
         digit_roi = binary[y_start:y_end, x_start:x_end]
-        if w > 1 and h > 1:
+        if w > 1 and h > 5:
             segmented_regions.append((x_start, y_start, x_end - x_start, y_end - y_start))
             # cv2.rectangle(image, (x_start, y_start), (x_end, y_end), (0, 255, 0), 2)
     plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
@@ -75,7 +75,7 @@ def get_prediction(image_path):
     cropped_images = crop_and_pad_images(image_with_boxes, segmented_regions)
     number = []
     for cropped_image, x in cropped_images:
-        contrast = 1.75
+        contrast = 1.5
         brightness = -100
         cropped_image = cv2.convertScaleAbs(
             cropped_image, alpha=contrast, beta=brightness)
