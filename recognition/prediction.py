@@ -43,9 +43,9 @@ def segment_digits(image, padding=2):
         if w > 1 and h > 5:
             segmented_regions.append((x_start, y_start, x_end - x_start, y_end - y_start))
             # cv2.rectangle(image, (x_start, y_start), (x_end, y_end), (0, 255, 0), 2)
-    plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
-    plt.title('Image with Bounding Boxes within segment digits')
-    plt.show()
+    # plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
+    # plt.title('Image with Bounding Boxes within segment digits')
+    # plt.show()
     return segmented_regions, image
 
 # Crop and pad the segmented images
@@ -57,9 +57,9 @@ def crop_and_pad_images(image, segmented_regions):
         resized_digit_roi = cv2.resize(digit_roi_gray, (28, 28))
         padded_digit_roi = np.zeros((28, 28), dtype=np.uint8)
         padded_digit_roi[:resized_digit_roi.shape[0], :resized_digit_roi.shape[1]] = resized_digit_roi
-        plt.imshow(padded_digit_roi, cmap='gray')
-        plt.title('Cropped Image with Padding')
-        plt.show()
+        # plt.imshow(padded_digit_roi, cmap='gray')
+        # plt.title('Cropped Image with Padding')
+        # plt.show()
         cropped_images.append((padded_digit_roi, x))
     return cropped_images
 
@@ -82,9 +82,9 @@ def get_prediction(image_path):
         cropped_image = cv2.bitwise_not(cropped_image)
         cropped_image = cropped_image.astype(np.float64) / 255.0
         cropped_image = np.expand_dims(cropped_image, axis=-1)
-        plt.imshow(cropped_image, cmap='gray')
-        plt.title("final one")
-        plt.show()
+        # plt.imshow(cropped_image, cmap='gray')
+        # plt.title("final one")
+        # plt.show()
         digit = predict_and_display(model, cropped_image)
         number.append((digit, x))
     if len(number) == 1:
