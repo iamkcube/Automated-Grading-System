@@ -1,3 +1,4 @@
 env/
 # out/
 __pycache__
+backend/answersheets/*_cropped_*.jpg
