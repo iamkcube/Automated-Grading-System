@@ -68,7 +68,7 @@ def crop_marks(image_path):
 
 def crop_barcode(image_path):
     original_image = Image.open(image_path)
-    cropped_image = original_image.crop((191-10, 26-10, 191+213+10, 26+42+10))
+    cropped_image = original_image.crop((98-10, 22-10, 98+400+10, 22+76+10))
     cropped_image.save(f'{add_file_name(image_path, "_cropped_barcode")}')
 
 
