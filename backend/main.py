@@ -1,14 +1,18 @@
 from fastapi.middleware.cors import CORSMiddleware
 from typing import Union
-from fastapi import File, UploadFile, FastAPI
+from fastapi import File, UploadFile, FastAPI, HTTPException
+from fastapi.responses import FileResponse
+from pydantic import BaseModel
 import os
 import sys
 from PIL import Image
+from pathlib import Path
 
 parentdir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, parentdir)
-from recognition.prediction import get_prediction
+from recognition.certificate_generator import update_marks_sheet, make_certificate
 from recognition.barcode_reader import barcode_reader
+from recognition.prediction import get_prediction
 
 
 app = FastAPI()
@@ -57,8 +61,30 @@ def upload(file: UploadFile = File(...)):
     mark = get_prediction(
         image_path=fr'../answersheets/{add_file_name(file_name, "_cropped_marks")}')
     print(mark)
-    return {"marks": mark, "info": info}
 
+    student_id, subject_code = info.split(",")
+    update_marks(student_id, subject_code, mark)
+
+    return {"marks": mark, "student_id":student_id, "subject_code":subject_code}
+
+class Student(BaseModel):
+    student_id: str
+
+@app.post("/send_pdf")
+async def send_pdf(student: Student):
+    print(student.student_id)
+    print(type(student.student_id))
+
+    make_certificate(student.student_id)
+
+    certificate_path = Path(f'../certificates/Certificate-{student.student_id}.pdf')
+    if not certificate_path.is_file():
+        raise HTTPException(status_code=404, detail="Certificate not found")
+
+
+    response = FileResponse(str(certificate_path))
+    response.headers["Content-Disposition"] = f"attachment; filename=Certificate-{student.student_id}.pdf"
+    return response
 
 def crop_marks(image_path):
     original_image = Image.open(image_path)
@@ -78,6 +104,10 @@ def add_file_name(file_path, attribute):
     return file_name + attribute + file_extension
 
 
+def update_marks(student_id, subject_code, mark):
+    update_marks_sheet(student_id=student_id, subject_code=subject_code, endsem_marks=mark)
+
+
 # print(add_file_name('answersheets/answer.sheet1.jpg', "_cropped_marks"))
-crop_barcode(r'../answersheets/answersheet2.jpg')
-print(barcode_reader(r'../answersheets/answersheet2_cropped_barcode.jpg'))
+# crop_barcode(r'../answersheets/answersheet2.jpg')
+# print(barcode_reader(r'../answersheets/answersheet2_cropped_barcode.jpg'))

@@ -46,9 +46,9 @@ function handleFormSubmit(e)
 			const marksDiv = document.createElement("div");
 			marksDiv.textContent = `Marks Scored: ${data.marks}`;
 			const regNumDiv = document.createElement("div");
-			regNumDiv.textContent = "Registration Number: 2111100424";
+			regNumDiv.textContent = `Registration Number: ${data.student_id}`;
 			const subjectDiv = document.createElement("div");
-			subjectDiv.textContent = "Subject: Software Engineering";
+			subjectDiv.textContent = `Subject Code: ${data.subject_code}`;
 			newDiv.appendChild(heading);
 			newDiv.appendChild(marksDiv);
 			newDiv.appendChild(regNumDiv);
